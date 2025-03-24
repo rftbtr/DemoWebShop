@@ -15,7 +15,7 @@ public class BaseDriver {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }
-    public static void WaitAndClose() {
+    public static void TearDown() {
         MyFunc.sleep(6);
         driver.quit();
     }
