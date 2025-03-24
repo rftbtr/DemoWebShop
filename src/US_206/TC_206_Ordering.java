@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-public class TC_206Ordering extends BaseDriver {
+public class TC_206_Ordering extends BaseDriver {
     @Test
     public void OrderingTest() {
         driver.navigate().to("https://demowebshop.tricentis.com/");

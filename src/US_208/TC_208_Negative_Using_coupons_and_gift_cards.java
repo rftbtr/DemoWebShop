@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-public class US_208_Negative_Using_coupons_and_gift_cards extends BaseDriver {
+public class TC_208_Negative_Using_coupons_and_gift_cards extends BaseDriver {
 
     @Test
     public void US_208_Negative_Using_coupons_and_gift_cards() {
