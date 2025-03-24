@@ -2,11 +2,14 @@ package Utility;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
 import java.time.Duration;
 import java.util.Random;
 
 public class BaseDriver {
     public static WebDriver driver;
+    public static Actions actions;
 
     static {
         CloseFaultyWindows();
@@ -14,6 +17,7 @@ public class BaseDriver {
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+        actions = new Actions(driver);
     }
     public static void TearDown() {
         MyFunc.sleep(6);
