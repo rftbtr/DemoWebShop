@@ -10,14 +10,21 @@ public class BaseDriver {
     public static WebDriver driver;
 
     static {
+        CloseFaultyWindows();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
     }
-    public static void WaitAndClose() {
+    public static void TearDown() {
         MyFunc.sleep(6);
         driver.quit();
+    }
+    public static void CloseFaultyWindows() {
+        try {
+            Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
+        } catch (Exception ignored) {
+        }
     }
     public static String generateRandomEmail() {
         String characters = "abcdefghijklmnopqrstuvwxyz0123456789";
