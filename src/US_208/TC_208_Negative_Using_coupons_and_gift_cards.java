@@ -34,7 +34,6 @@ public class TC_208_Negative_Using_coupons_and_gift_cards extends BaseDriver {
 
         WebElement computersLink = driver.findElement(By.xpath("//a[@href='/computers'][1]"));
 
-        Actions actions = new Actions(driver);
         actions.moveToElement(computersLink).build().perform();
         MyFunc.sleep(1);
 
