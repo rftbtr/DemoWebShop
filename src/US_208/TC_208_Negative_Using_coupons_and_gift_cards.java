@@ -17,19 +17,19 @@ public class TC_208_Negative_Using_coupons_and_gift_cards extends BaseDriver {
         driver.get("https://demowebshop.tricentis.com");
 
         WebElement loginLink = driver.findElement(By.xpath("//a[@class='ico-login']"));
-        loginLink.click();
+        actions.moveToElement(loginLink).click().build().perform();
         MyFunc.sleep(1);
 
         WebElement emailField = driver.findElement(By.xpath("//input[@id='Email']"));
-        emailField.sendKeys("test55@testin.com");
+        actions.moveToElement(emailField).click().sendKeys("test55@testin.com").build().perform();
         MyFunc.sleep(1);
 
         WebElement passwordField = driver.findElement(By.xpath("//input[@id='Password']"));
-        passwordField.sendKeys("Test12345");
+        actions.moveToElement(passwordField).click().sendKeys("Test12345").build().perform();
         MyFunc.sleep(1);
 
         WebElement loginButton = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
-        loginButton.click();
+        actions.moveToElement(loginButton).click().build().perform();
         MyFunc.sleep(1);
 
         WebElement computersLink = driver.findElement(By.xpath("//a[@href='/computers'][1]"));
@@ -39,15 +39,15 @@ public class TC_208_Negative_Using_coupons_and_gift_cards extends BaseDriver {
         MyFunc.sleep(1);
 
         WebElement laptopLink = driver.findElement(By.xpath("//a[@href='/notebooks'][1]"));
-        laptopLink.click();
+        actions.moveToElement(laptopLink).click().build().perform();
         MyFunc.sleep(1);
 
         WebElement addToCartButton = driver.findElement(By.xpath("//input[@value='Add to cart']"));
-        addToCartButton.click();
+        actions.moveToElement(addToCartButton).click().build().perform();
         MyFunc.sleep(1);
 
         WebElement shoppingCartLink = driver.findElement(By.xpath("//a[@class='ico-cart']"));
-        shoppingCartLink.click();
+        actions.moveToElement(shoppingCartLink).click().build().perform();
         MyFunc.sleep(1);
 
         WebElement laptop = driver.findElement(By.xpath("//a[@class='product-name']"));
@@ -57,11 +57,11 @@ public class TC_208_Negative_Using_coupons_and_gift_cards extends BaseDriver {
         MyFunc.sleep(1);
 
         WebElement discountCode = driver.findElement(By.xpath("//input[@name='discountcouponcode']"));
-        discountCode.sendKeys("Test1");
+        actions.moveToElement(discountCode).click().sendKeys("Test1").build().perform();
         MyFunc.sleep(1);
 
         WebElement applyCouponButton = driver.findElement(By.xpath("//input[@name='applydiscountcouponcode']"));
-        applyCouponButton.click();
+        actions.moveToElement(applyCouponButton).click().build().perform();
         MyFunc.sleep(2);
 
         WebElement applyCouponMessage = driver.findElement(By.xpath("//div[contains(text(),\"The coupon code you entered couldn't be applied to your order\")]"));
@@ -70,11 +70,11 @@ public class TC_208_Negative_Using_coupons_and_gift_cards extends BaseDriver {
         MyFunc.sleep(1);
 
         WebElement giftCardCode = driver.findElement(By.xpath("//input[@name='giftcardcouponcode']"));
-        giftCardCode.sendKeys("Test2");
+        actions.moveToElement(giftCardCode).click().sendKeys("Test2").build().perform();
         MyFunc.sleep(1);
 
         WebElement applyGiftCardButton = driver.findElement(By.xpath("//input[@name='applygiftcardcouponcode']"));
-        applyGiftCardButton.click();
+        actions.moveToElement(applyGiftCardButton).click().build().perform();
         MyFunc.sleep(2);
 
         WebElement applyGiftCardMessage = driver.findElement(By.xpath("//div[contains(text(),\"The coupon code you entered couldn't be applied to your order\")]"));
@@ -91,11 +91,11 @@ public class TC_208_Negative_Using_coupons_and_gift_cards extends BaseDriver {
         MyFunc.sleep(1);
 
         WebElement clickAgreeButton = driver.findElement(By.xpath("//input[@id='termsofservice']"));
-        clickAgreeButton.click();
+        actions.moveToElement(clickAgreeButton).click().build().perform();
         MyFunc.sleep(1);
 
         WebElement checkoutButton = driver.findElement(By.xpath("//button[@id='checkout']"));
-        checkoutButton.click();
+        actions.moveToElement(checkoutButton).click().build().perform();
         MyFunc.sleep(1);
 
         Select newAddress = new Select(driver.findElement(By.xpath("//select[@id='billing-address-select']")));
@@ -111,42 +111,43 @@ public class TC_208_Negative_Using_coupons_and_gift_cards extends BaseDriver {
         MyFunc.sleep(1);
 
         WebElement city = driver.findElement(By.xpath("//input[@id='BillingNewAddress_City']"));
-        city.sendKeys("New York");
+        actions.moveToElement(city).click().sendKeys("New York").build().perform();
         MyFunc.sleep(1);
 
         WebElement address1 = driver.findElement(By.xpath("//input[@id='BillingNewAddress_Address1']"));
-        address1.sendKeys("123 Main Street");
+        actions.moveToElement(address1).click().sendKeys("123 Main Street").build().perform();
         MyFunc.sleep(1);
 
         WebElement zipCode2 = driver.findElement(By.xpath("//input[@id='BillingNewAddress_ZipPostalCode']"));
-        zipCode2.sendKeys("12345");
+        actions.moveToElement(zipCode2).click().sendKeys("12345").build().perform();
         MyFunc.sleep(1);
 
         WebElement phoneNumber = driver.findElement(By.xpath("//input[@name='BillingNewAddress.PhoneNumber']"));
-        phoneNumber.sendKeys("1234567890");
+        actions.moveToElement(phoneNumber).click().sendKeys("1234567890").build().perform();
         MyFunc.sleep(1);
 
         WebElement continueButton = driver.findElement(By.xpath("//input[@onclick='Billing.save()']"));
-        continueButton.click();
+        actions.moveToElement(continueButton).click().build().perform();
         MyFunc.sleep(3);
 
         WebElement continueButton2 = driver.findElement(By.xpath("//input[@onclick='Shipping.save()']"));
-        continueButton2.click();
+        actions.moveToElement(continueButton2).click().build().perform();
         MyFunc.sleep(1);
 
         WebElement shippingMethod = driver.findElement(By.xpath("//input[@id='shippingoption_0']"));
-        shippingMethod.click();
+        actions.moveToElement(shippingMethod).click().build().perform();
         MyFunc.sleep(1);
 
         WebElement continueButton3 = driver.findElement(By.xpath("//input[@onclick='ShippingMethod.save()']"));
-        continueButton3.click();
+        actions.moveToElement(continueButton3).click().build().perform();
+        MyFunc.sleep(1);
 
         WebElement paymentMethod = driver.findElement(By.xpath("//input[@id='paymentmethod_2']"));
-        paymentMethod.click();
+        actions.moveToElement(paymentMethod).click().build().perform();
         MyFunc.sleep(1);
 
         WebElement continueButton4 = driver.findElement(By.xpath("//input[@onclick='PaymentMethod.save()']"));
-        continueButton4.click();
+        actions.moveToElement(continueButton4).click().build().perform();
         MyFunc.sleep(1);
 
         Select creditCard = new Select(driver.findElement(By.xpath("//select[@id='CreditCardType']")));
@@ -154,11 +155,11 @@ public class TC_208_Negative_Using_coupons_and_gift_cards extends BaseDriver {
         MyFunc.sleep(1);
 
         WebElement cardHolderName = driver.findElement(By.xpath("//input[@id='CardholderName']"));
-        cardHolderName.sendKeys("Test Cardholder Name");
+        actions.moveToElement(cardHolderName).click().sendKeys("Test Cardholder Name").build().perform();
         MyFunc.sleep(1);
 
         WebElement cardNumber = driver.findElement(By.xpath("//input[@id='CardNumber']"));
-        cardNumber.sendKeys("4242 4242 4242 4242");
+        actions.moveToElement(cardNumber).click().sendKeys("4242 4242 4242 4242").build().perform();
         MyFunc.sleep(1);
 
         Select expirationMonth = new Select(driver.findElement(By.xpath("//select[@id='ExpireMonth']")));
@@ -169,15 +170,15 @@ public class TC_208_Negative_Using_coupons_and_gift_cards extends BaseDriver {
         expirationYear.selectByVisibleText("2032");
 
         WebElement cardCode = driver.findElement(By.xpath("//input[@id='CardCode']"));
-        cardCode.sendKeys("123");
+        actions.moveToElement(cardCode).click().sendKeys("123").build().perform();
         MyFunc.sleep(1);
 
         WebElement continueButton5 = driver.findElement(By.xpath("//input[@onclick='PaymentInfo.save()']"));
-        continueButton5.click();
+        actions.moveToElement(continueButton5).click().build().perform();
         MyFunc.sleep(1);
 
         WebElement confirmOrderButton = driver.findElement(By.xpath("//input[@onclick='ConfirmOrder.save()']"));
-        confirmOrderButton.click();
+        actions.moveToElement(confirmOrderButton).click().build().perform();
         MyFunc.sleep(1);
 
         WebElement orderCompletedMessage = driver.findElement(By.xpath("//*[text()='Your order has been successfully processed!']"));
