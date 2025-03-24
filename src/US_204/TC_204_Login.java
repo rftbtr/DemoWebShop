@@ -18,19 +18,19 @@ public class TC_204_Login extends BaseDriver {
         Assert.assertEquals("The website could not be accessed...", "https://demowebshop.tricentis.com/", driver.getCurrentUrl());
 
         WebElement login1Button = driver.findElement(By.className("ico-login"));
-        login1Button.click();
+        actions.moveToElement(login1Button).click().build().perform();
         MyFunc.sleep(2);
         Assert.assertEquals("Login page could not be reached.", "https://demowebshop.tricentis.com/login", driver.getCurrentUrl());
 
         WebElement emailField = driver.findElement(By.id("Email"));
-        emailField.sendKeys(email);
+        actions.moveToElement(emailField).click().sendKeys(email).build().perform();
         Assert.assertEquals("Inconsistent email address.", "rfttest@gmail.com", emailField.getAttribute("value"));
 
         WebElement passwordField = driver.findElement(By.id("Password"));
-        passwordField.sendKeys(password);
+        actions.moveToElement(passwordField).click().sendKeys(password).build().perform();
 
         WebElement login2Button = driver.findElement(By.xpath("//*[contains(@class,'button-1 login-button')]"));
-        login2Button.click();
+        actions.moveToElement(login2Button).click().build().perform();
         MyFunc.sleep(2);
         Assert.assertEquals("Failed to return to homepage...", "https://demowebshop.tricentis.com/", driver.getCurrentUrl());
 
