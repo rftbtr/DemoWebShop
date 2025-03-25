@@ -19,22 +19,22 @@ public class TC_206_Ordering extends BaseDriver {
         MyFunc.sleep(2);
 
         WebElement loginLink = driver.findElement(By.cssSelector(".ico-login"));
-        loginLink.click();
+        actions.moveToElement(loginLink).click().build().perform();
         MyFunc.sleep(3);
 
         Assert.assertTrue("The login page could not be accessed.", driver.getTitle().contains("Login"));
         MyFunc.sleep(1);
 
         WebElement emailInput = driver.findElement(By.cssSelector("#Email"));
-        emailInput.sendKeys("cigeyab754@erapk.com");
-        MyFunc.sleep(3);
+        actions.moveToElement(emailInput).click().sendKeys("cigeyab754@erapk.com").build().perform();
+        MyFunc.sleep(1);
 
         WebElement passwordInput = driver.findElement(By.cssSelector("#Password"));
-        passwordInput.sendKeys("BugFathers4!");
-        MyFunc.sleep(3);
+        actions.moveToElement(passwordInput).click().sendKeys("BugFathers4!").build().perform();
+        MyFunc.sleep(1);
 
         WebElement loginButton = driver.findElement(By.cssSelector("input[value='Log in']"));
-        loginButton.click();
+        actions.moveToElement(loginButton).click().build().perform();
         MyFunc.sleep(3);
 
         WebElement loginSuccess = driver.findElement(By.cssSelector("div[class='header-links'] a[class='account']"));
@@ -42,24 +42,23 @@ public class TC_206_Ordering extends BaseDriver {
         System.out.println("Login successful.");
         MyFunc.sleep(3);
 
-        Actions actions = new Actions(driver);
         WebElement pageDown = driver.findElement(By.cssSelector("div[class='column my-account'] h3"));
         actions.moveToElement(pageDown).build().perform();
         MyFunc.sleep(3);
 
         WebElement laptop = driver.findElement(By.xpath("//h2[@class='product-title']//a[contains(text(),'14.1-inch Laptop')]"));
-        laptop.click();
+        actions.moveToElement(laptop).click().build().perform();
         MyFunc.sleep(5);
 
         Assert.assertTrue("The page could not be accessed.", driver.getTitle().contains("14.1-inch Laptop"));
         MyFunc.sleep(3);
 
         WebElement addToCart = driver.findElement(By.cssSelector("#add-to-cart-button-31"));
-        addToCart.click();
+        actions.moveToElement(addToCart).click().build().perform();
         MyFunc.sleep(5);
 
         WebElement shoppingCart = driver.findElement(By.cssSelector("li[id='topcartlink'] [class='cart-label']"));
-        shoppingCart.click();
+        actions.moveToElement(shoppingCart).click().build().perform();
         MyFunc.sleep(3);
 
         WebElement checkout = driver.findElement(By.cssSelector("#checkout"));
@@ -75,70 +74,109 @@ public class TC_206_Ordering extends BaseDriver {
 
         WebElement state = driver.findElement(By.cssSelector("#StateProvinceId"));
         state.click();
-        MyFunc.sleep(3);
+        MyFunc.sleep(2);
         Select stateSelect = new Select(state);
         stateSelect.selectByValue("9");
-        MyFunc.sleep(3);
+        MyFunc.sleep(2);
 
         WebElement zipCode = driver.findElement(By.cssSelector("#ZipPostalCode"));
         zipCode.clear();
-        MyFunc.sleep(3);
+        MyFunc.sleep(2);
         zipCode.sendKeys("99999");
-        MyFunc.sleep(3);
+        MyFunc.sleep(1);
 
         WebElement termsOfService = driver.findElement(By.cssSelector("#termsofservice"));
-        termsOfService.click();
-        MyFunc.sleep(3);
+        actions.moveToElement(termsOfService).click().build().perform();
+        MyFunc.sleep(1);
 
-        checkout.click();
+        actions.moveToElement(checkout).click().build().perform();
         MyFunc.sleep(3);
 
         WebElement checkoutSuccess = driver.findElement(By.cssSelector("div[class='page-title'] h1"));
         Assert.assertTrue("The checkout was not successful.", checkoutSuccess.isDisplayed());
         MyFunc.sleep(3);
 
-        WebElement selectBillingAddress = driver.findElement(By.cssSelector("#billing-address-select"));
-        selectBillingAddress.click();
-        MyFunc.sleep(3);
+        WebElement firstName = driver.findElement(By.cssSelector("label[for='BillingNewAddress_FirstName']"));
 
-        WebElement newAddress = driver.findElement(By.xpath("//option[normalize-space()='New Address']"));
-        newAddress.click();
-        MyFunc.sleep(3);
+        if (firstName.isDisplayed()) {
+            WebElement billingCountry = driver.findElement(By.cssSelector("#BillingNewAddress_CountryId"));
+            actions.moveToElement(billingCountry).click().build().perform();
+            MyFunc.sleep(1);
+            Select billingCountrySelect = new Select(billingCountry);
+            billingCountrySelect.selectByValue("1");
+            MyFunc.sleep(1);
 
-        WebElement billingCountry = driver.findElement(By.cssSelector("#BillingNewAddress_CountryId"));
-        billingCountry.click();
-        MyFunc.sleep(3);
-        Select billingCountrySelect = new Select(billingCountry);
-        billingCountrySelect.selectByValue("1");
-        MyFunc.sleep(3);
+            WebElement billingState = driver.findElement(By.cssSelector("#BillingNewAddress_StateProvinceId"));
+            actions.moveToElement(billingState).click().build().perform();
+            MyFunc.sleep(1);
+            Select billingStateSelect = new Select(billingState);
+            billingStateSelect.selectByValue("9");
+            MyFunc.sleep(1);
 
-        WebElement billingState = driver.findElement(By.cssSelector("#BillingNewAddress_StateProvinceId"));
-        billingState.click();
-        MyFunc.sleep(3);
-        Select billingStateSelect = new Select(billingState);
-        billingStateSelect.selectByValue("9");
-        MyFunc.sleep(3);
+            WebElement billingCity = driver.findElement(By.cssSelector("#BillingNewAddress_City"));
+            actions.moveToElement(billingCity).click().sendKeys("Fresno").build().perform();
+            MyFunc.sleep(1);
 
-        WebElement billingCity = driver.findElement(By.cssSelector("#BillingNewAddress_City"));
-        billingCity.sendKeys("Fresno");
-        MyFunc.sleep(3);
+            WebElement billingAddress1 = driver.findElement(By.cssSelector("#BillingNewAddress_Address1"));
+            actions.moveToElement(billingAddress1).click().sendKeys("2823 Fresno St").build().perform();
+            MyFunc.sleep(1);
 
-        WebElement billingAddress1 = driver.findElement(By.cssSelector("#BillingNewAddress_Address1"));
-        billingAddress1.sendKeys("2823 Fresno St");
-        MyFunc.sleep(3);
+            WebElement billingZipCode = driver.findElement(By.cssSelector("#BillingNewAddress_ZipPostalCode"));
+            actions.moveToElement(billingZipCode).click().sendKeys("99999").build().perform();
+            MyFunc.sleep(1);
 
-        WebElement billingZipCode = driver.findElement(By.cssSelector("#BillingNewAddress_ZipPostalCode"));
-        billingZipCode.sendKeys("99999");
-        MyFunc.sleep(3);
+            WebElement billingPhoneNumber = driver.findElement(By.cssSelector("#BillingNewAddress_PhoneNumber"));
+            actions.moveToElement(billingPhoneNumber).click().sendKeys("555-555-5555").build().perform();
+            MyFunc.sleep(1);
 
-        WebElement billingPhoneNumber = driver.findElement(By.cssSelector("#BillingNewAddress_PhoneNumber"));
-        billingPhoneNumber.sendKeys("555-555-5555");
-        MyFunc.sleep(3);
+            WebElement continueButton1 = driver.findElement(By.cssSelector("input[onclick='Billing.save()']"));
+            continueButton1.click();
+            System.out.println("Billing information saved.");
+            MyFunc.sleep(5);
+        } else {
+            WebElement selectBillingAddress = driver.findElement(By.cssSelector("#billing-address-select"));
+            actions.moveToElement(selectBillingAddress).click().build().perform();
+            MyFunc.sleep(3);
 
-        WebElement continueButton1 = driver.findElement(By.cssSelector("input[onclick='Billing.save()']"));
-        continueButton1.click();
-        System.out.println("Billing information saved.");
-        MyFunc.sleep(5);
+            WebElement newAddress = driver.findElement(By.xpath("//option[normalize-space()='New Address']"));
+            newAddress.click();
+            MyFunc.sleep(3);
+
+            WebElement billingCountry = driver.findElement(By.cssSelector("#BillingNewAddress_CountryId"));
+            billingCountry.click();
+            MyFunc.sleep(1);
+            Select billingCountrySelect = new Select(billingCountry);
+            billingCountrySelect.selectByValue("1");
+            MyFunc.sleep(1);
+
+            WebElement billingState = driver.findElement(By.cssSelector("#BillingNewAddress_StateProvinceId"));
+            billingState.click();
+            MyFunc.sleep(1);
+            Select billingStateSelect = new Select(billingState);
+            billingStateSelect.selectByValue("9");
+            MyFunc.sleep(1);
+
+            WebElement billingCity = driver.findElement(By.cssSelector("#BillingNewAddress_City"));
+            billingCity.sendKeys("Fresno");
+            MyFunc.sleep(1);
+
+            WebElement billingAddress1 = driver.findElement(By.cssSelector("#BillingNewAddress_Address1"));
+            billingAddress1.sendKeys("2823 Fresno St");
+            MyFunc.sleep(1);
+
+            WebElement billingZipCode = driver.findElement(By.cssSelector("#BillingNewAddress_ZipPostalCode"));
+            billingZipCode.sendKeys("99999");
+            MyFunc.sleep(1);
+
+            WebElement billingPhoneNumber = driver.findElement(By.cssSelector("#BillingNewAddress_PhoneNumber"));
+            billingPhoneNumber.sendKeys("555-555-5555");
+            MyFunc.sleep(1);
+
+            WebElement continueButton1 = driver.findElement(By.cssSelector("input[onclick='Billing.save()']"));
+            continueButton1.click();
+            System.out.println("Billing information saved.");
+            MyFunc.sleep(5);
+        }
 
         WebElement shippingMethodMessage = driver.findElement(By.cssSelector("p[class='description'] i"));
         Assert.assertTrue("The shipping method is not displayed.", shippingMethodMessage.isDisplayed());
@@ -146,8 +184,8 @@ public class TC_206_Ordering extends BaseDriver {
 
         WebElement inStorePickup = driver.findElement(By.cssSelector("label[for='PickUpInStore']"));
         Assert.assertTrue("The in-store pickup option is not displayed.", inStorePickup.isDisplayed());
-        inStorePickup.click();
-        MyFunc.sleep(5);
+        actions.moveToElement(inStorePickup).click().build().perform();
+        MyFunc.sleep(3);
 
         WebElement continueButton2 = driver.findElement(By.cssSelector("input[onclick='Shipping.save()']"));
         continueButton2.click();
@@ -160,7 +198,7 @@ public class TC_206_Ordering extends BaseDriver {
 
         WebElement creditCard = driver.findElement(By.cssSelector("#paymentmethod_2"));
         creditCard.click();
-        MyFunc.sleep(3);
+        MyFunc.sleep(1);
 
         WebElement continueButton3 = driver.findElement(By.cssSelector("input[class='button-1 payment-method-next-step-button']"));
         continueButton3.click();
@@ -180,25 +218,25 @@ public class TC_206_Ordering extends BaseDriver {
 
         WebElement cardholderName = driver.findElement(By.cssSelector("#CardholderName"));
         cardholderName.sendKeys("Techno Study");
-        MyFunc.sleep(3);
+        MyFunc.sleep(1);
 
         WebElement creditCardNumber = driver.findElement(By.cssSelector("#CardNumber"));
         creditCardNumber.sendKeys("4242 4242 4242 4242");
-        MyFunc.sleep(3);
+        MyFunc.sleep(1);
 
         WebElement expirationMonth = driver.findElement(By.cssSelector("#ExpireMonth"));
         expirationMonth.click();
-        MyFunc.sleep(3);
+        MyFunc.sleep(2);
         Select expirationMonthSelect = new Select(expirationMonth);
         expirationMonthSelect.selectByValue("1");
-        MyFunc.sleep(3);
+        MyFunc.sleep(2);
 
         WebElement expirationYear = driver.findElement(By.cssSelector("#ExpireYear"));
         expirationYear.click();
-        MyFunc.sleep(3);
+        MyFunc.sleep(2);
         Select expirationYearSelect = new Select(expirationYear);
         expirationYearSelect.selectByValue("2032");
-        MyFunc.sleep(3);
+        MyFunc.sleep(2);
 
         WebElement cardCode = driver.findElement(By.cssSelector("#CardCode"));
         cardCode.sendKeys("123");
@@ -207,6 +245,10 @@ public class TC_206_Ordering extends BaseDriver {
         WebElement continueButton4 = driver.findElement(By.cssSelector("input[class='button-1 payment-info-next-step-button']"));
         continueButton4.click();
         System.out.println("Payment information saved.");
+        MyFunc.sleep(3);
+
+        pageDown = driver.findElement(By.cssSelector("div[class='column my-account'] h3"));
+        actions.moveToElement(pageDown).build().perform();
         MyFunc.sleep(3);
 
         WebElement subTotal = driver.findElement(By.xpath("//span[@class='product-price']"));
@@ -221,7 +263,7 @@ public class TC_206_Ordering extends BaseDriver {
         float floatTotal = Float.parseFloat(totalText);
         MyFunc.sleep(3);
 
-        Assert.assertEquals("Sub-total and Order-total do not match", floatSubTotal, floatTotal,0.1f);
+        Assert.assertEquals("Sub-total and Order-total do not match", floatSubTotal, floatTotal, 0.1f);
         System.out.println("The total is correct.");
         MyFunc.sleep(3);
 
