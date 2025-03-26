@@ -7,9 +7,9 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class TC_207_Survey_Response extends BaseDriver {
+public class TC_207_SurveyResponse extends BaseDriver {
     @Test
-    public void Test1() {
+    public void SurveyResponseTest() {
         String email = "naxeh39287@boyaga.com";
         String password = "123456789b";
         driver.navigate().to("https://demowebshop.tricentis.com/");

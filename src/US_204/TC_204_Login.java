@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 public class TC_204_Login extends BaseDriver {
 
     @Test
-    public void Test1() {
+    public void LoginTest() {
 
         String email = "rfttest@gmail.com";
         String password = "rft12345";

@@ -7,13 +7,12 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-public class TC_208_Negative_Using_coupons_and_gift_cards extends BaseDriver {
+public class TC_208_UsingCouponsAndGiftCardsNegative extends BaseDriver {
 
     @Test
-    public void US_208_Negative_Using_coupons_and_gift_cards() {
+    public void UsingCouponsAndGiftCardsNegativeTest() {
         driver.get("https://demowebshop.tricentis.com");
 
         WebElement loginLink = driver.findElement(By.xpath("//a[@class='ico-login']"));
