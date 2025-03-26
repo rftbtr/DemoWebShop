@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 public class TC_202_RegisterUserNegative extends BaseDriver {
 
     @Test
-    public void RegisterUserNegative() {
+    public void RegisterUserNegativeTest() {
         driver.get("https://demowebshop.tricentis.com/");
         System.out.println("went to demowebshop.com");
         MyFunc.sleep(2);
