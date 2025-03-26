@@ -97,37 +97,9 @@ public class TC_208_Negative_Using_coupons_and_gift_cards extends BaseDriver {
         actions.moveToElement(checkoutButton).click().build().perform();
         MyFunc.sleep(1);
 
-        Select newAddress = new Select(driver.findElement(By.xpath("//select[@id='billing-address-select']")));
-        newAddress.selectByVisibleText("New Address");
-        MyFunc.sleep(1);
-
-        Select country2 = new Select(driver.findElement(By.xpath("//select[@id='BillingNewAddress_CountryId']")));
-        country2.selectByVisibleText("United States");
-        MyFunc.sleep(1);
-
-        Select state2 = new Select(driver.findElement(By.xpath("//select[@id='BillingNewAddress_StateProvinceId']")));
-        state2.selectByVisibleText("New York");
-        MyFunc.sleep(1);
-
-        WebElement city = driver.findElement(By.xpath("//input[@id='BillingNewAddress_City']"));
-        actions.moveToElement(city).click().sendKeys("New York").build().perform();
-        MyFunc.sleep(1);
-
-        WebElement address1 = driver.findElement(By.xpath("//input[@id='BillingNewAddress_Address1']"));
-        actions.moveToElement(address1).click().sendKeys("123 Main Street").build().perform();
-        MyFunc.sleep(1);
-
-        WebElement zipCode2 = driver.findElement(By.xpath("//input[@id='BillingNewAddress_ZipPostalCode']"));
-        actions.moveToElement(zipCode2).click().sendKeys("12345").build().perform();
-        MyFunc.sleep(1);
-
-        WebElement phoneNumber = driver.findElement(By.xpath("//input[@name='BillingNewAddress.PhoneNumber']"));
-        actions.moveToElement(phoneNumber).click().sendKeys("1234567890").build().perform();
-        MyFunc.sleep(1);
-
-        WebElement continueButton = driver.findElement(By.xpath("//input[@onclick='Billing.save()']"));
-        actions.moveToElement(continueButton).click().build().perform();
-        MyFunc.sleep(3);
+        /// address directing operations have been moved to BaseDriver.java and turned into methods.
+        newAddressInput();
+        MyFunc.sleep(2);
 
         WebElement continueButton2 = driver.findElement(By.xpath("//input[@onclick='Shipping.save()']"));
         actions.moveToElement(continueButton2).click().build().perform();

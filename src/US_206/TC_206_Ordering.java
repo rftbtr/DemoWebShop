@@ -96,87 +96,9 @@ public class TC_206_Ordering extends BaseDriver {
         Assert.assertTrue("The checkout was not successful.", checkoutSuccess.isDisplayed());
         MyFunc.sleep(3);
 
-        WebElement firstName = driver.findElement(By.cssSelector("label[for='BillingNewAddress_FirstName']"));
-
-        if (firstName.isDisplayed()) {
-            WebElement billingCountry = driver.findElement(By.cssSelector("#BillingNewAddress_CountryId"));
-            actions.moveToElement(billingCountry).click().build().perform();
-            MyFunc.sleep(1);
-            Select billingCountrySelect = new Select(billingCountry);
-            billingCountrySelect.selectByValue("1");
-            MyFunc.sleep(1);
-
-            WebElement billingState = driver.findElement(By.cssSelector("#BillingNewAddress_StateProvinceId"));
-            actions.moveToElement(billingState).click().build().perform();
-            MyFunc.sleep(1);
-            Select billingStateSelect = new Select(billingState);
-            billingStateSelect.selectByValue("9");
-            MyFunc.sleep(1);
-
-            WebElement billingCity = driver.findElement(By.cssSelector("#BillingNewAddress_City"));
-            actions.moveToElement(billingCity).click().sendKeys("Fresno").build().perform();
-            MyFunc.sleep(1);
-
-            WebElement billingAddress1 = driver.findElement(By.cssSelector("#BillingNewAddress_Address1"));
-            actions.moveToElement(billingAddress1).click().sendKeys("2823 Fresno St").build().perform();
-            MyFunc.sleep(1);
-
-            WebElement billingZipCode = driver.findElement(By.cssSelector("#BillingNewAddress_ZipPostalCode"));
-            actions.moveToElement(billingZipCode).click().sendKeys("99999").build().perform();
-            MyFunc.sleep(1);
-
-            WebElement billingPhoneNumber = driver.findElement(By.cssSelector("#BillingNewAddress_PhoneNumber"));
-            actions.moveToElement(billingPhoneNumber).click().sendKeys("555-555-5555").build().perform();
-            MyFunc.sleep(1);
-
-            WebElement continueButton1 = driver.findElement(By.cssSelector("input[onclick='Billing.save()']"));
-            continueButton1.click();
-            System.out.println("Billing information saved.");
-            MyFunc.sleep(5);
-        } else {
-            WebElement selectBillingAddress = driver.findElement(By.cssSelector("#billing-address-select"));
-            actions.moveToElement(selectBillingAddress).click().build().perform();
-            MyFunc.sleep(3);
-
-            WebElement newAddress = driver.findElement(By.xpath("//option[normalize-space()='New Address']"));
-            newAddress.click();
-            MyFunc.sleep(3);
-
-            WebElement billingCountry = driver.findElement(By.cssSelector("#BillingNewAddress_CountryId"));
-            billingCountry.click();
-            MyFunc.sleep(1);
-            Select billingCountrySelect = new Select(billingCountry);
-            billingCountrySelect.selectByValue("1");
-            MyFunc.sleep(1);
-
-            WebElement billingState = driver.findElement(By.cssSelector("#BillingNewAddress_StateProvinceId"));
-            billingState.click();
-            MyFunc.sleep(1);
-            Select billingStateSelect = new Select(billingState);
-            billingStateSelect.selectByValue("9");
-            MyFunc.sleep(1);
-
-            WebElement billingCity = driver.findElement(By.cssSelector("#BillingNewAddress_City"));
-            billingCity.sendKeys("Fresno");
-            MyFunc.sleep(1);
-
-            WebElement billingAddress1 = driver.findElement(By.cssSelector("#BillingNewAddress_Address1"));
-            billingAddress1.sendKeys("2823 Fresno St");
-            MyFunc.sleep(1);
-
-            WebElement billingZipCode = driver.findElement(By.cssSelector("#BillingNewAddress_ZipPostalCode"));
-            billingZipCode.sendKeys("99999");
-            MyFunc.sleep(1);
-
-            WebElement billingPhoneNumber = driver.findElement(By.cssSelector("#BillingNewAddress_PhoneNumber"));
-            billingPhoneNumber.sendKeys("555-555-5555");
-            MyFunc.sleep(1);
-
-            WebElement continueButton1 = driver.findElement(By.cssSelector("input[onclick='Billing.save()']"));
-            continueButton1.click();
-            System.out.println("Billing information saved.");
-            MyFunc.sleep(5);
-        }
+        /// address directing operations have been moved to BaseDriver.java and turned into methods.
+        newAddressInput();
+        MyFunc.sleep(2);
 
         WebElement shippingMethodMessage = driver.findElement(By.cssSelector("p[class='description'] i"));
         Assert.assertTrue("The shipping method is not displayed.", shippingMethodMessage.isDisplayed());
