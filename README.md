@@ -100,13 +100,13 @@ User should be able to download the invoice from the order details page.
 
 ## 🚀 Tools and Technologies Used
 | **Tool / Technology** | **Description** |
-|------------------------|-----------------|
-| **Java**              | Backend development language |
-| **Selenium**          | Test automation framework |
-| **JUnit**             | Test scenario management framework |
-| **Maven**             | Project management tool |
-| **JIRA**              | Agile process management tool |
-| **Git/GitHub**        | Version control system |
+|-----------------------|-----------------|
+| **Java**             | Backend development language |
+| **Selenium**         | Test automation framework |
+| **JUnit**            | Test scenario management framework |
+| **Maven**            | Project management tool |
+| **JIRA**             | Agile process management tool |
+| **Git/GitHub**       | Version control system |
 
 ---
 
@@ -127,13 +127,16 @@ User should be able to download the invoice from the order details page.
 
 ## 👨‍💻 Project Team GitHub
 
-- **Zafer Ataklı** → https://github.com/zaferatakli
-- **Tugba Kılıç** → https://github.com/TugbaKilic33
-- **Yiğit Çam** → https://github.com/Yigit-Cam
-- **Rıfat Batır** → https://github.com/rftbtr
-- **Azim Korkmaz** → https://github.com/AzimKorkmaz
-- **Nuri Öztürk** → https://github.com/NuriOzturk
-- **Sibel Öztemel** → https://github.com/Sibel52
-- **Mert Can Özdemir** → https://github.com/lioncarnes
+- **[Zafer Ataklı](https://github.com/zaferatakli)**
+- **[Tugba Kılıç](https://github.com/TugbaKilic33)**
+- **[Yiğit Çam](https://github.com/Yigit-Cam)**
+- **[Rıfat Batır](https://github.com/rftbtr)**
+- **[Azim Korkmaz](https://github.com/AzimKorkmaz)**
+- **[Nuri Öztürk](https://github.com/NuriOzturk)**
+- **[Sibel Öztemel](https://github.com/Sibel52)**
+- **[Mert Can Özdemir](https://github.com/lioncarnes)**
 
 ---
+## 📝 License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
