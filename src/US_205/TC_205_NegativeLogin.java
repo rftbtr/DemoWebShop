@@ -1,90 +1,77 @@
 package US_205;
 
 import Utility.BaseDriver;
-import Utility.MyFunc;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class TC_205_NegativeLogin extends BaseDriver {
+
     @Test
     public void NegativeLoginTest() {
-        String email = "testorbekli@gmail.com";
-        String password = "sibel12";
+        String email = "cigeyab754@erapk.com";
+        String password = "BugFathers4!";
         String randomEmail = "mrtcn@gmail.com";
-        String randomPassword = "mrt.123";
+        String randomPassword = "mrt.1234";
+
         driver.navigate().to("https://demowebshop.tricentis.com/");
-        MyFunc.sleep(1);
+        Assert.assertTrue("Web page could not be accessed.", driver.getTitle().contains("Demo Web Shop"));
 
-        WebElement mainLogin = driver.findElement(By.xpath("//*[@class='ico-login']"));
-        actions.moveToElement(mainLogin).click().build().perform();
-        MyFunc.sleep(1);
+        WebElement signInLogin = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Log in']")));
+        actions.moveToElement(signInLogin).click().build().perform();
 
-        WebElement firstLogin = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
-        actions.moveToElement(firstLogin).click().build().perform();
-        MyFunc.sleep(1);
+        WebElement submitLoginButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='button-1 login-button']")));
+        actions.moveToElement(submitLoginButton).click().build().perform();
 
-        WebElement errorMessage = driver.findElement(By.xpath("//*[@class='validation-summary-errors']"));
+        WebElement errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='validation-summary-errors']")));
         Assert.assertTrue("Error Message Not Found", errorMessage.isDisplayed());
-        System.out.println(errorMessage.getText());
+        System.out.println("When the Login button was pressed without entering Email and Password, an error message was displayed.");
 
-        WebElement mainLogin1 = driver.findElement(By.xpath("//*[@class='ico-login']"));
-        actions.moveToElement(mainLogin1).click().build().perform();
-        MyFunc.sleep(1);
+        signInLogin = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Log in']")));
+        actions.moveToElement(signInLogin).click().build().perform();
 
-        WebElement mail = driver.findElement(By.xpath("//*[@id='Email']"));
-        actions.moveToElement(mail).click().sendKeys(email).build().perform();
-        MyFunc.sleep(1);
+        WebElement emailField = driver.findElement(By.xpath("//*[@id='Email']"));
+        actions.moveToElement(emailField).click().sendKeys(email).build().perform();
 
-        WebElement secondLogin = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
-        actions.moveToElement(secondLogin).click().build().perform();
-        MyFunc.sleep(1);
+        submitLoginButton = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
+        actions.moveToElement(submitLoginButton).click().build().perform();
 
-        WebElement errorMessage2 = driver.findElement(By.xpath("//*[@class='validation-summary-errors']"));
-        Assert.assertTrue("Error Message Not Found", errorMessage2.isDisplayed());
-        System.out.println("Error Message Displayed");
+        errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='validation-summary-errors']")));
+        Assert.assertTrue("Error Message Not Found", errorMessage.isDisplayed());
+        System.out.println("An error message was displayed when the Login button was pressed without entering the password.");
 
-        WebElement mainLogin2 = driver.findElement(By.xpath("//*[@class='ico-login']"));
-        actions.moveToElement(mainLogin2).click().build().perform();
-        MyFunc.sleep(1);
+        signInLogin = driver.findElement(By.xpath("//*[@class='ico-login']"));
+        actions.moveToElement(signInLogin).click().build().perform();
 
-        WebElement passwrd = driver.findElement(By.xpath("//*[@id='Password']"));
-        actions.moveToElement(passwrd).click().sendKeys(password).build().perform();
-        MyFunc.sleep(1);
+        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='Password']")));
+        actions.moveToElement(passwordField).click().sendKeys(password).build().perform();
 
-        WebElement thirdLogin = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
-        actions.moveToElement(thirdLogin).click().build().perform();
-        MyFunc.sleep(1);
+        submitLoginButton = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
+        actions.moveToElement(submitLoginButton).click().build().perform();
 
-        WebElement errorMessage3 = driver.findElement(By.xpath("//*[@class='validation-summary-errors']"));
-        Assert.assertTrue("Error Message Not Found", errorMessage3.isDisplayed());
-        System.out.println("Error Message Displayed");
-        MyFunc.sleep(1);
+        errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='validation-summary-errors']")));
+        Assert.assertTrue("Error Message Not Found", errorMessage.isDisplayed());
+        System.out.println("An error message was displayed when the Login button was pressed by entering only Password without entering Email.");
 
-        WebElement mainLogin3 = driver.findElement(By.xpath("//*[@class='ico-login']"));
-        actions.moveToElement(mainLogin3).click().build().perform();
-        MyFunc.sleep(1);
+        signInLogin = driver.findElement(By.xpath("//*[@class='ico-login']"));
+        actions.moveToElement(signInLogin).click().build().perform();
 
-        WebElement randomMail = driver.findElement(By.xpath("//*[@id='Email']"));
+        WebElement randomMail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='Email']")));
         actions.moveToElement(randomMail).click().sendKeys(randomEmail).build().perform();
-        MyFunc.sleep(2);
 
-        WebElement randomPasswrd = driver.findElement(By.xpath("//*[@id='Password']"));
-        actions.moveToElement(randomPasswrd).click().sendKeys(randomPassword).build().perform();
-        MyFunc.sleep(1);
+        WebElement randomPasswordField = driver.findElement(By.xpath("//*[@id='Password']"));
+        actions.moveToElement(randomPasswordField).click().sendKeys(randomPassword).build().perform();
 
-        WebElement randomLogin = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
-        actions.moveToElement(randomLogin).click().build().perform();
-        MyFunc.sleep(1);
+        submitLoginButton = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
+        actions.moveToElement(submitLoginButton).click().build().perform();
 
-        WebElement errorMessage4 = driver.findElement(By.xpath("//*[@class='validation-summary-errors']"));
-        Assert.assertTrue("Error Message Not Found", errorMessage4.isDisplayed());
-        System.out.println("Error Message Displayed");
-
+        errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='validation-summary-errors']")));
+        Assert.assertTrue("Error Message Not Found", errorMessage.isDisplayed());
+        System.out.println("An error message was displayed when the Login button was pressed with an unregistered Random Email and Password.");
 
         TearDown();
-
     }
 }
 

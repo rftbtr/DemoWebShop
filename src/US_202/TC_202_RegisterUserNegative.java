@@ -1,123 +1,104 @@
 package US_202;
 
 import Utility.BaseDriver;
-import Utility.MyFunc;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class TC_202_RegisterUserNegative extends BaseDriver {
 
     @Test
     public void RegisterUserNegativeTest() {
         driver.get("https://demowebshop.tricentis.com/");
-        System.out.println("went to demowebshop.com");
-        MyFunc.sleep(2);
+        Assert.assertTrue("Web page could not be accessed.", driver.getTitle().contains("Demo Web Shop"));
 
-        WebElement register = driver.findElement(By.cssSelector("a[href='/register']"));
+        WebElement register = driver.findElement(By.xpath("//*[text()='Register']"));
         register.click();
-        MyFunc.sleep(2);
 
-        WebElement men = driver.findElement(By.cssSelector("input[id='gender-male']"));
-        men.click();
-        MyFunc.sleep(2);
+        WebElement male = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[id='gender-male']")));
+        Assert.assertTrue("Register page could not be accessed.", driver.getTitle().contains("Demo Web Shop. Register"));
+        male.click();
 
         WebElement firstName = driver.findElement(By.xpath("//input[@id='FirstName']"));
         firstName.sendKeys("Azim");
-        MyFunc.sleep(2);
 
         WebElement lastName = driver.findElement(By.xpath("//input[@id='LastName']"));
         lastName.sendKeys("Korkmaz");
-        MyFunc.sleep(2);
 
         String randomEmail = generateRandomEmail();
-        WebElement email = driver.findElement(By.xpath("//input[@id='Email']"));
-        email.sendKeys(randomEmail);
-        MyFunc.sleep(2);
+        WebElement registerEmail = driver.findElement(By.xpath("//input[@id='Email']"));
+        registerEmail.sendKeys(randomEmail);
 
-        WebElement password = driver.findElement(By.xpath("//input[@id='Password']"));
-        password.sendKeys("denemedemowepshop2");
-        MyFunc.sleep(2);
+        WebElement registerPassword = driver.findElement(By.xpath("//input[@id='Password']"));
+        registerPassword.sendKeys("Testdemowepshop2");
 
-        WebElement confirmPassword = driver.findElement(By.xpath("//input[@id='ConfirmPassword']"));
-        confirmPassword.sendKeys("denemedemowepshop2");
-        MyFunc.sleep(2);
+        WebElement registerConfirmPassword = driver.findElement(By.xpath("//input[@id='ConfirmPassword']"));
+        registerConfirmPassword.sendKeys("Testdemowepshop2");
 
-        WebElement loginRegister = driver.findElement(By.xpath("//input[@id='register-button']"));
-        loginRegister.click();
-        MyFunc.sleep(2);
+        WebElement registerLoginButton = driver.findElement(By.xpath("//input[@id='register-button']"));
+        registerLoginButton.click();
 
-        WebElement registrationSuccessful = driver.findElement(By.xpath("//input[@value='Continue']"));
-        registrationSuccessful.click();
-        MyFunc.sleep(2);
+        WebElement continueButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@value='Continue']")));
+        Assert.assertTrue("Registration was not successful.", continueButton.isDisplayed());
+        System.out.println("Registration was successful.");
+        continueButton.click();
 
-        WebElement exit = driver.findElement(By.xpath("(//a[normalize-space()='Log out'])[1]"));
-        exit.click();
-        MyFunc.sleep(2);
+        WebElement logout = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Log out']")));
+        logout.click();
 
-        WebElement login = driver.findElement(By.xpath("//a[normalize-space()='Log in']"));
-        login.click();
-        MyFunc.sleep(2);
+        WebElement signInLogin = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Log in']")));
+        signInLogin.click();
 
-        WebElement emailInput = driver.findElement(By.xpath("//input[@id='Email']"));
-        emailInput.sendKeys(randomEmail);
-        MyFunc.sleep(2);
+        WebElement emailField = driver.findElement(By.xpath("//input[@id='Email']"));
+        emailField.sendKeys(randomEmail);
 
-        WebElement passwordInput = driver.findElement(By.xpath("//input[@id='Password'] "));
-        passwordInput.sendKeys("denemedemowepshop2");
-        MyFunc.sleep(2);
+        WebElement passwordField = driver.findElement(By.xpath("//input[@id='Password'] "));
+        passwordField.sendKeys("Testdemowepshop2");
 
         WebElement rememberMe = driver.findElement(By.xpath("//input[@id='RememberMe']"));
         rememberMe.click();
-        MyFunc.sleep(2);
 
-        WebElement loginButton = driver.findElement(By.cssSelector("input[value='Log in']"));
-        loginButton.click();
-        MyFunc.sleep(2);
+        WebElement submitLoginButton = driver.findElement(By.cssSelector("input[value='Log in']"));
+        submitLoginButton.click();
 
-        WebElement logout = driver.findElement(By.cssSelector(".ico-logout"));
+        WebElement loginSuccess = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[class='header-links'] a[class='account']")));
+        Assert.assertTrue("The login was not successful.", loginSuccess.isDisplayed());
+        System.out.println("Login successful.");
+
+        logout = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='Log out']")));
         logout.click();
-        MyFunc.sleep(2);
 
-        WebElement register1 = driver.findElement(By.cssSelector("a[href='/register']"));
-        register1.click();
-        MyFunc.sleep(2);
+        register = driver.findElement(By.xpath("//*[text()='Register']"));
+        register.click();
+        Assert.assertTrue("Register page could not be accessed.", driver.getTitle().contains("Demo Web Shop. Register"));
 
-        WebElement men1 = driver.findElement(By.cssSelector("input[id='gender-male']"));
-        men1.click();
-        MyFunc.sleep(2);
+        male = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[id='gender-male']")));
+        male.click();
 
-        WebElement firstName1 = driver.findElement(By.xpath("//input[@id='FirstName']"));
-        firstName1.sendKeys("Azim");
-        MyFunc.sleep(2);
+        firstName = driver.findElement(By.xpath("//input[@id='FirstName']"));
+        firstName.sendKeys("Azim");
 
-        WebElement lastName1 = driver.findElement(By.xpath("//input[@id='LastName']"));
-        lastName1.sendKeys("Korkmaz");
-        MyFunc.sleep(2);
+        lastName = driver.findElement(By.xpath("//input[@id='LastName']"));
+        lastName.sendKeys("Korkmaz");
 
-        WebElement email1 = driver.findElement(By.xpath("//input[@id='Email']"));
-        email1.sendKeys(randomEmail);
-        MyFunc.sleep(2);
+        registerEmail = driver.findElement(By.xpath("//input[@id='Email']"));
+        registerEmail.sendKeys(randomEmail);
 
-        WebElement password1 = driver.findElement(By.xpath("//input[@id='Password']"));
-        password1.sendKeys("denemedemowepshop2");
-        MyFunc.sleep(2);
+        registerPassword = driver.findElement(By.xpath("//input[@id='Password']"));
+        registerPassword.sendKeys("Testdemowepshop2");
 
-        WebElement confirmPassword1 = driver.findElement(By.xpath("//input[@id='ConfirmPassword']"));
-        confirmPassword1.sendKeys("denemedemowepshop2");
-        MyFunc.sleep(2);
+        registerConfirmPassword = driver.findElement(By.xpath("//input[@id='ConfirmPassword']"));
+        registerConfirmPassword.sendKeys("Testdemowepshop2");
 
-        WebElement loginRegister1 = driver.findElement(By.xpath("//input[@id='register-button']"));
-        loginRegister1.click();
-        MyFunc.sleep(2);
+        registerLoginButton = driver.findElement(By.xpath("//input[@id='register-button']"));
+        registerLoginButton.click();
 
-        WebElement errorMessage = driver.findElement(By.xpath("//li[normalize-space()='The specified email already exists']"));
-        MyFunc.sleep(2);
-
+        WebElement errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='The specified email already exists']")));
         Assert.assertTrue(" error message would appear on the screen", errorMessage.isDisplayed());
+        System.out.println("Error message was displayed.");
 
         TearDown();
-
     }
 }
