@@ -1,93 +1,67 @@
 package US_209;
 
 import Utility.BaseDriver;
-import Utility.MyFunc;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import java.util.ArrayList;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
 
 public class TC_209_DownloadTheOrderHistory extends BaseDriver {
 
     @Test
     public void downloadTheOrderHistoryTest() {
-
-        driver.get("https://demowebshop.tricentis.com/");
-        MyFunc.sleep(2);
-
+        driver.navigate().to("https://demowebshop.tricentis.com/");
         Assert.assertTrue("Web page could not be accessed.", driver.getTitle().contains("Demo Web Shop"));
-        MyFunc.sleep(2);
 
-        WebElement longinLink= driver.findElement(By.cssSelector("a.ico-login"));
-        actions.moveToElement(longinLink).click().build().perform();
-        MyFunc.sleep(2);
+        Login();
 
-        Assert.assertTrue("The login page could not be accessed.", driver.getTitle().contains("Login"));
-        MyFunc.sleep(2);
+        WebElement myAccountEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".header-links .account")));
+        actions.moveToElement(myAccountEmail).click().build().perform();
 
-        WebElement emailInput=driver.findElement(By.cssSelector(".inputs [name='Email']"));
-        actions.moveToElement(emailInput).click().sendKeys("BugFathers04@gmail.com").build().perform();
-        MyFunc.sleep(2);
+        WebElement myAccountHeader = driver.findElement(By.cssSelector(".page-title h1"));
+        Assert.assertTrue("The My Account page could not be accessed.", myAccountHeader.getText().contains("My account - Customer info"));
 
-        WebElement passwordInput=driver.findElement(By.cssSelector(".inputs [name='Password']"));
-        actions.moveToElement(passwordInput).click().sendKeys("123456").build().perform();
-        MyFunc.sleep(2);
-
-        WebElement loginBtn=driver.findElement(By.cssSelector(".buttons [type='submit']"));
-        actions.moveToElement(loginBtn).click().build().perform();
-        MyFunc.sleep(3);
-
-        WebElement myAccountLink=driver.findElement(By.cssSelector(".header-links .account"));
-        actions.moveToElement(myAccountLink).click().build().perform();
-        MyFunc.sleep(3);
-
-        WebElement myAccountHeader=driver.findElement(By.cssSelector(".page-title h1"));
-        Assert.assertTrue("The My Account page could not be accessed.",myAccountHeader.getText().contains("My account - Customer info"));
-
-        WebElement ordersLink=driver.findElement(By.cssSelector(".listbox :nth-child(3) a"));
+        WebElement ordersLink = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".listbox :nth-child(3) a")));
         actions.moveToElement(ordersLink).click().build().perform();
-        MyFunc.sleep(2);
 
-        WebElement myAccountOrdersHeader=driver.findElement(By.cssSelector(".page-title h1"));
-        Assert.assertTrue("The Orders page could not be accessed.",myAccountOrdersHeader.getText().contains("My account - Orders"));
-        List<WebElement> orders=driver.findElements(By.cssSelector(".order-list .title>strong"));
+        WebElement myAccountOrdersHeader = driver.findElement(By.cssSelector(".page-title h1"));
+        Assert.assertTrue("The Orders page could not be accessed.", myAccountOrdersHeader.getText().contains("My account - Orders"));
 
-        /*
-        My account - All Orders
-        Order Number: 1940662
-        Order Number: 1936121
-        Order Number: 1935652
-        */
+        List<WebElement> orders = driver.findElements(By.cssSelector(".order-list .title>strong"));
+        List<WebElement> detailsBtn = driver.findElements(By.cssSelector(".buttons [value='Details']"));
 
-        List<String> ordersNumbers=new ArrayList<>();
-        ordersNumbers.add("1940662");
-        ordersNumbers.add("1936121");
-        ordersNumbers.add("1935652");
+        int totalOrders = orders.size();
+        Assert.assertTrue("The number of orders is less than 3.", totalOrders >= 3);
 
-        for (int i = 0; i < orders.size(); i++) {
-            Assert.assertTrue("The requested order could not be found.", orders.get(i).getText().contains(ordersNumbers.get(i)));
-        }
+        for (int i = 0; i < 3; i++) {
+            String currentOrderNumber = orders.get(i).getText();
+            WebElement currentDetailsBtn = detailsBtn.get(i);
 
-        List<WebElement> detailsBtn=driver.findElements(By.cssSelector(".buttons [value='Details']"));
-        WebElement ordersInfoPage;
-        WebElement pdfInvoiceBtn;
+            actions.moveToElement(currentDetailsBtn).click().build().perform();
 
-        for (int i = 0; i < detailsBtn.size(); i++) {
-            actions.moveToElement(detailsBtn.get(i)).click().build().perform();
-            MyFunc.sleep(2);
-            ordersInfoPage=driver.findElement(By.cssSelector(".order-number strong"));
-            Assert.assertTrue("The requested order page could not be accessed.", ordersInfoPage.getText().contains(ordersNumbers.get(i)));
-            MyFunc.sleep(2);
-            pdfInvoiceBtn=driver.findElement(By.cssSelector(".page-title>:nth-child(3)"));
+            WebElement orderInfoPage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".order-number strong")));
+            String detailText = orderInfoPage.getText();
+
+            String expectedOrderNumber = currentOrderNumber.replaceAll("[^0-9]", "");
+            String actualOrderNumber = detailText.replaceAll("[^0-9]", "");
+
+            System.out.println("Order number: " + expectedOrderNumber);
+            System.out.println("Order details: " + actualOrderNumber);
+
+            Assert.assertEquals("The requested order page could not be accessed.", expectedOrderNumber, actualOrderNumber);
+
+            WebElement pdfInvoiceBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".page-title>:nth-child(3)")));
             actions.moveToElement(pdfInvoiceBtn).click().build().perform();
-            MyFunc.sleep(2);
-            driver.navigate().back();
-            MyFunc.sleep(2);
-        }
 
+            driver.navigate().back();
+            ordersLink = driver.findElement(By.cssSelector(".listbox :nth-child(3) a"));
+            actions.moveToElement(ordersLink).click().build().perform();
+
+            orders = driver.findElements(By.cssSelector(".order-list .title>strong"));
+            detailsBtn = driver.findElements(By.cssSelector(".buttons [value='Details']"));
+        }
         TearDown();
     }
 }
