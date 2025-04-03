@@ -30,6 +30,7 @@ public class BaseDriver {
     }
 
     public static void TearDown() {
+        // This method is used to close the browser and clean up resources.
         MyFunc.sleep(6);
         driver.quit();
     }
@@ -69,6 +70,7 @@ public class BaseDriver {
     }
 
     public static void newAddressInput() {
+        // This method is used to input a new address in the billing information section.
         WebElement firstName = driver.findElement(By.cssSelector("label[for='BillingNewAddress_FirstName']"));
         if (firstName.isDisplayed()) {
             WebElement billingCountry = driver.findElement(By.cssSelector("#BillingNewAddress_CountryId"));
